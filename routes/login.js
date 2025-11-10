@@ -26,7 +26,13 @@ router.post('/', async function (req, res, next) {
              role: user.role,
              access: user.access
         };
-
+    if(user.access == false){
+      return res.status(200).json({ 
+            status: 200,
+            message: 'wait for approve',
+            data: null,
+        });
+    }    
     const token = jwt.sign(
       payload,
       JWT_SECRET,
